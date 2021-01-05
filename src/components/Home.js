@@ -1,99 +1,36 @@
-import React, { useState, useEffect } from "react";
-import { debounce } from "lodash";
-import axios from "axios";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import {
-  onSearch,
-  onSearchTerm,
-  onSearchPageToken,
-  onSearchCurPage,
-  onSearchLastPage
-} from "../redux/actions";
-import SearchBar from "./search-bar";
-import VideoList from "./video-list";
-import Pagination from "./pagination";
-import { usePrevious, API_KEY } from "./utilities/helper";
+import { getOrders } from "../redux/actions";
+import OrderList from "./order-list";
 
-const Home = ({
-  onSearch,
-  onSearchTerm,
-  onSearchPageToken,
-  onSearchCurPage,
-  onSearchLastPage,
-  term,
-  videos,
-  pageToken,
-  curPage,
-  lastPage
-}) => {
-  const [totalResults, setTotalResults] = useState(1000000);
-  const prevTerm = usePrevious(term);
-
-  const videoSearch = debounce(term => {
-    const ROOT_URL = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&part=snippet&maxResults=31`;
-    const url = `${ROOT_URL}&q=${term}${pageToken ? `&pageToken=${pageToken}` : ''}`;
-    axios.get(url)
-      .then(response => {
-        if (prevTerm !== term) {
-          onSearchCurPage(1);
-          onSearchLastPage(3);
-          onSearch(response.data.items);
-          setTotalResults(response.data.pageInfo.totalResults);
-        } else {
-          onSearch([...videos, ...response.data.items]);
-        }
-        onSearchPageToken(response.data.nextPageToken);
-      })
-      .catch(err => {
-        alert(err);
-      });
-  }, 300);
-
+const Home = ({ getOrders = () =>{}, inProgressOrders = [], completedOrders = [], isLoading, error }) => {
   useEffect(() => {
-    if (curPage === lastPage && pageToken) {
-      onSearchLastPage(lastPage + 1);
-      if (curPage % 3 === 0) {
-        videoSearch(term);
-      }
-    }
-  }, [curPage, lastPage, pageToken, term, videoSearch, onSearchLastPage]);
+    getOrders();
+  }, [getOrders]);
+
+  if (isLoading) {
+    return <h1>Loading</h1>;
+  } else if (error !== '') {
+    return <h1>{error}</h1>;
+  }
 
   return (
     <div>
-      <h1>YouTube Video Search</h1>
-      <SearchBar
-        onSearchTermChange={videoSearch}
-        term={term}
-        onSearchTerm={onSearchTerm}
+      <OrderList
+        inProgressOrders={inProgressOrders}
+        completedOrders={completedOrders}
       />
-      <VideoList videos={videos}  curPage={curPage} />
-      {term && (
-        <Pagination
-        curPage={curPage}
-        setCurPage={onSearchCurPage}
-        totalResults={totalResults}
-        lastPage={lastPage}
-      />)}
     </div>
-)};
+  );
+};
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ orders }) => {
   return {
-    videos: state.search.videos,
-    term: state.search.term,
-    pageToken: state.search.pageToken,
-    curPage: state.search.curPage,
-    lastPage: state.search.lastPage
+    inProgressOrders: orders.inProgressOrders,
+    completedOrders: orders.completedOrders,
+    isLoading: orders.isLoading,
+    error: orders.error
   };
 };
 
-export default connect(
-  mapStateToProps,
-  {
-    onSearch,
-    onSearchTerm,
-    onSearchPageToken,
-    onSearchCurPage,
-    onSearchLastPage
-  }
-)(Home);
+export default connect(mapStateToProps, { getOrders })(Home);

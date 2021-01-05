@@ -1,11 +1,19 @@
-import { useEffect, useRef } from "react";
+import get from "lodash/get";
 
-export const usePrevious = value => {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = value;
+export const handleOrders = orders => {
+  const inProgressOrders = [];
+  const completedOrders = [];
+  orders.forEach(order => {
+    const code = get(order, "status.code");
+    if (code === 1 || code === 2) {
+      inProgressOrders.push(order);
+    } else if (code === 3 || code === 4) {
+      completedOrders.push(order);
+    }
   });
-  return ref.current;
-}
 
-export const API_KEY = "YOUR_API_KEY";
+  return {
+    inProgressOrders: inProgressOrders.sort((a, b) => new Date(b.date) - new Date(a.date)),
+    completedOrders: completedOrders.sort((a, b) => new Date(b.date) - new Date(a.date))
+  }
+}

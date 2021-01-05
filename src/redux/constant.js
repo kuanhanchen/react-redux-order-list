@@ -1,5 +1,4 @@
-export const SEARCH = "SEARCH";
-export const SEARCH_TERM = "SEARCH_TERM";
-export const SEARCH_TOKEN = "SEARCH_TOKEN";
-export const SEARCH_CUR_PAGE = "SEARCH_CUR_PAGE";
-export const SEARCH_LAST_PAGE = "SEARCH_LAST_PAGE";
+export const GET_ORDERS_REQUEST = "GET_ORDERS_REQUEST";
+export const GET_ORDERS_SUCCESS = "GET_ORDERS_SUCCESS";
+export const GET_ORDERS_FAIL = "GET_ORDERS_FAIL";
+export const API_URL = "http://localhost:8000/orders";

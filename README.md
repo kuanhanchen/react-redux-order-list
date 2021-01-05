@@ -1,16 +1,13 @@
 # Youtube Search
 
-React-Redux Youtube Search
+React-Redux Order List
 
 ## Features
 
-- Implement the functionality of Search using `React`, `Redux`, and `Hooks`.
-  - Show 10 videos per page and limit 3 pages at the beginning.
-  - Once the current page is on the last page, the 3rd page for example, have the next page (4th page) button in the pagination if there are more videos available.
-  - You would need to replace API_KEY in src/components/utilities/helper.js.
-- Persist the redux state by `redux-persist` after a refresh.
-- Have the responsive layout by `flexbox`.
-- Build pagination by `SCSS`.
+- Display a order list using `React`, `Redux`, `Redux Thunk`, and `Hooks`.
+- Separate orders by status into two sections.
+- Sort orders by delivery date in descending order.
+- Have the responsive layout by `reactstrap` and `flexbox`.
 - Test React components using `React Testing Library`.
 - Test action creators and reducers using `Jest`.
 - Have style in `SCSS`.
@@ -18,6 +15,11 @@ React-Redux Youtube Search
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm run server`
+
+Start JSON server.\
+Open [http://localhost:8000/orders](http://localhost:8000/orders) to view the mock data in the browser.
 
 ### `npm start`
 
@@ -51,3 +53,4 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# react-redux-order-list
