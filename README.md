@@ -11,6 +11,7 @@ React-Redux Order List
 - Test React components using `React Testing Library`.
 - Test action creators and reducers using `Jest`.
 - Have style in `SCSS`.
+- Store mocked data in `src/assets/mock-data/orders.json`
 
 ## Available Scripts
 
