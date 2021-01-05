@@ -22,6 +22,8 @@ In the project directory, you can run:
 Start JSON Server first.\
 Open [http://localhost:8000/orders](http://localhost:8000/orders) to view the mock data in the browser.
 
+<img width="557" alt="Screen Shot 2021-01-06 at 12 08 05 AM" src="https://user-images.githubusercontent.com/25028094/103669830-cd7a0b80-4fb3-11eb-9abe-e5df996698bb.png">
+
 ### `npm start`
 
 After starting JSON Server, run the app in the development mode.\
@@ -29,6 +31,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
+
+<img width="953" alt="Screen Shot 2021-01-06 at 12 08 33 AM" src="https://user-images.githubusercontent.com/25028094/103669809-c7842a80-4fb3-11eb-907a-7400fdddaefc.png">
 
 ### `npm test`
 
