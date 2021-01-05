@@ -11,7 +11,7 @@ React-Redux Order List
 - Test React components using `React Testing Library`.
 - Test action creators and reducers using `Jest`.
 - Have style in `SCSS`.
-- Store mocked data in `src/assets/mock-data/orders.json`
+- Get a fake REST API to access mocked data by `JSON Server`.
 
 ## Available Scripts
 
@@ -19,12 +19,12 @@ In the project directory, you can run:
 
 ### `npm run server`
 
-Start JSON server.\
+Start JSON Server first.\
 Open [http://localhost:8000/orders](http://localhost:8000/orders) to view the mock data in the browser.
 
 ### `npm start`
 
-Runs the app in the development mode.\
+After starting JSON Server, run the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
