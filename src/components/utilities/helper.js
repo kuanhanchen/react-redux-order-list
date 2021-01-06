@@ -1,8 +1,14 @@
 import get from "lodash/get";
 
-export const handleOrders = orders => {
+export const handleOrders = (orders = []) => {
   const inProgressOrders = [];
   const completedOrders = [];
+  if (!Array.isArray(orders)) {
+    return {
+      inProgressOrders,
+      completedOrders
+    }
+  }
   orders.forEach(order => {
     const code = get(order, "status.code");
     if (code === 1 || code === 2) {
