@@ -3,10 +3,6 @@ $s-spacing: 8px;
 $m-spacing: 16px;
 
 .order {
-  // width: $breakpoint-mobile;
-  // margin: $m-spacing auto;
-  // text-decoration: none;
-  // color: black;
   display: flex;
   justify-content: space-between;
   .order-info {
@@ -14,9 +10,6 @@ $m-spacing: 16px;
     justify-content: flex-start;
     width: 100%;
     .order-info-left {
-      // white-space: nowrap;
-      // overflow: hidden;
-      // text-overflow: ellipsis;
       display: flex;
       align-items: center;
       img {
@@ -33,9 +26,6 @@ $m-spacing: 16px;
           color: green;
         }
       }
-      // white-space: nowrap;
-      // overflow: hidden;
-      // text-overflow: ellipsis;
     }
   }
   .order-icon {
